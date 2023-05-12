@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>10</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ecommerce.Business\Ecommerce.Business.csproj" />
+    <ProjectReference Include="..\Ecommerce.Capabilities\Ecommerce.Capabilities.csproj" />
+    <ProjectReference Include="..\Ecommerce.Messaging.Kafka\Ecommerce.Messaging.Kafka.csproj" />
+    <ProjectReference Include="..\Ecommerce.Persistence\Ecommerce.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Capabilities\" />
+  </ItemGroup>
+</Project>

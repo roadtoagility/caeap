@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latestmajor</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="DFlow" Version="0.8.2" />
+    <PackageReference Include="DFlow.Persistence" Version="0.8.2" />
+    <PackageReference Include="NodaTime" Version="3.1.9" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ecommerce.Domain\Ecommerce.Domain.csproj" />
+  </ItemGroup>
+</Project>
