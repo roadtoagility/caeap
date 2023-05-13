@@ -9,7 +9,7 @@ using DFlow.Validation;
 
 namespace Ecommerce.Capabilities.Messaging;
 
-public interface IMessageConsumer
+public interface IProductAgregateConsumer
 {
     Task<Result<bool, Failure>> Consume(CancellationToken cancellationToken);
 }

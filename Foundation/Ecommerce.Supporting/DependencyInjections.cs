@@ -4,15 +4,16 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-using Ecommerce.Capabilities.Supporting;
-using Ecommerce.Supporting;
 
-namespace Ecommerce.ConsumerProductChangelog;
+using Ecommerce.Capabilities.Supporting;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Ecommerce.Supporting;
 
 public static class DependencyInjections
 {
     public static void AddSupporting(this IServiceCollection services)
     {
-        services.AddSingleton<IConfig, Config>();
+        services.AddScoped<IConfig, Config>();
     }
 }

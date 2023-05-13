@@ -6,11 +6,14 @@
 
 
 using Confluent.Kafka;
+using Confluent.SchemaRegistry;
+using Confluent.SchemaRegistry.Serdes;
 using DFlow.Validation;
 using Ecommerce.Capabilities;
-using Ecommerce.Capabilities.Persistence.State;
 using Ecommerce.Capabilities.Persistence.States;
 using Ecommerce.Capabilities.Supporting;
+using Ecommerce.Domain.Events.Exported;
+using Ecommerce.Messaging.Kafka.Extensions;
 using Microsoft.Extensions.Logging;
 
 namespace Ecommerce.Messaging.Kafka.Producers;
@@ -31,7 +34,12 @@ public class ProducerProductChangelog: BaseMessageProducer<AggregateState>
         var ok = false;
         try
         {
-            var dr = await Producer
+            using var schemaRegistry = new CachedSchemaRegistryClient(SchemaRegistryConfig);
+            using var producer = new ProducerBuilder<string, ProductAggregate>(ProducerConfig)
+                .SetValueSerializer(new ProtobufSerializer<ProductAggregate>(schemaRegistry))
+                .Build();
+            
+            var dr = await producer
                 .ProduceAsync(TopicDestination, outboxMessage, cancellationToken);
             _logger.LogInformation(message: "New topic offset from published message: {0}", dr.TopicPartitionOffset);
             ok = dr.Status == PersistenceStatus.Persisted;
@@ -45,7 +53,7 @@ public class ProducerProductChangelog: BaseMessageProducer<AggregateState>
         return Result<bool, Failure>.SucceedFor(ok);
     }
     
-    private Message<string, AggregateState> MessageFrom(AggregateState change)
+    private Message<string, ProductAggregate> MessageFrom(AggregateState change)
     {
         var headerId = change.Id.ToByteArray();  // it's a good pratice to use a simple type as key, but a complexy
                                                      //type it's possible with a serializer registration
@@ -53,10 +61,10 @@ public class ProducerProductChangelog: BaseMessageProducer<AggregateState>
         var topicKey = change.AggregateId.ToString("D"); //product id
         var eventProcessingTimeMs = Timestamp.Default;
         
-        return new Message<string, AggregateState>
+        return new Message<string, ProductAggregate>
         {
             Key = topicKey,
-            Value = change,
+            Value = change.ToProtobuf(),
             //use hear to include a releavant informa for pre-processing
             Headers = new Headers {
                 new Header("EVENT_ID" ,headerId), 

@@ -6,7 +6,6 @@
 
 
 using Ecommerce.Capabilities.Messaging;
-using Ecommerce.Capabilities.Persistence.State;
 using Ecommerce.Capabilities.Persistence.States;
 using Ecommerce.Messaging.Kafka.Consumers;
 using Ecommerce.Messaging.Kafka.Producers;
@@ -24,7 +23,7 @@ public static class DependencyInjections
     
     public static void AddConsumers(this IServiceCollection services)
     {
-        services.AddSingleton<IMessageConsumer, ConsumerProductUpsert>();
+        services.AddSingleton<IProductAgregateConsumer, ConsumerProductUpsert>();
         services.AddHostedService<ProductUpsertHostedService>();
     }
 }

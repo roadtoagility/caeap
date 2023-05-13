@@ -8,7 +8,6 @@
 using Ecommerce.ConsumerProductChangelog;
 using Ecommerce.Messaging.Kafka;
 using Ecommerce.Persistence;
-using Ecommerce.Persistence.ExtensionMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +15,7 @@ builder.Configuration
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
     .AddEnvironmentVariables("ECOMMERCE_");
 
-builder.Services.AddDbContext<EcommerceAppDbContext>();
-
 builder.Services.AddSupporting();
-builder.Services.AddRepositories();
 
 //hosted services
 builder.Services.AddConsumers();

@@ -35,6 +35,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C411EF5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.ConsumerProductChangelog", "Ecommerce.ConsumerProductChangelog\Ecommerce.ConsumerProductChangelog.csproj", "{E05E967C-B848-4DC9-B941-41C6DD23D742}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Supporting", "Ecommerce.Supporting\Ecommerce.Supporting.csproj", "{2B4ACE72-DEF3-4D0E-9A9E-06DD07422471}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Messaging.Kafka.Testing", "Ecommerce.Messaging.Kafka.Testing\Ecommerce.Messaging.Kafka.Testing.csproj", "{E87B73B9-E151-4807-98F3-EB787C9C3906}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,14 @@ Global
 		{E05E967C-B848-4DC9-B941-41C6DD23D742}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E05E967C-B848-4DC9-B941-41C6DD23D742}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E05E967C-B848-4DC9-B941-41C6DD23D742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B4ACE72-DEF3-4D0E-9A9E-06DD07422471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B4ACE72-DEF3-4D0E-9A9E-06DD07422471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B4ACE72-DEF3-4D0E-9A9E-06DD07422471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B4ACE72-DEF3-4D0E-9A9E-06DD07422471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E87B73B9-E151-4807-98F3-EB787C9C3906}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E87B73B9-E151-4807-98F3-EB787C9C3906}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E87B73B9-E151-4807-98F3-EB787C9C3906}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E87B73B9-E151-4807-98F3-EB787C9C3906}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E2A494FF-C7F1-4C86-9AB4-B74CBD0B47A0} = {3FEE3891-2E7B-4301-8BE1-1124A04B8B50}
@@ -88,5 +100,7 @@ Global
 		{47FF6D84-A177-476A-8D23-0A1C42255FB0} = {4C411EF5-3212-439C-A03F-E08DF1EA7DFA}
 		{A9280000-6F7F-40B4-BE02-1D74A7B61FE0} = {4C411EF5-3212-439C-A03F-E08DF1EA7DFA}
 		{E05E967C-B848-4DC9-B941-41C6DD23D742} = {3FEE3891-2E7B-4301-8BE1-1124A04B8B50}
+		{2B4ACE72-DEF3-4D0E-9A9E-06DD07422471} = {3C5494E5-2E22-4B51-80B9-6384FD5F90F2}
+		{E87B73B9-E151-4807-98F3-EB787C9C3906} = {3C5494E5-2E22-4B51-80B9-6384FD5F90F2}
 	EndGlobalSection
 EndGlobal

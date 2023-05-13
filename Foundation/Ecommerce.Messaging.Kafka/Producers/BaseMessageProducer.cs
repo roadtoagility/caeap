@@ -6,12 +6,12 @@
 
 using System.Text.Json;
 using Confluent.Kafka;
+using Confluent.SchemaRegistry;
+using Confluent.SchemaRegistry.Serdes;
 using DFlow.Validation;
 using Ecommerce.Capabilities;
 using Ecommerce.Capabilities.Messaging;
-using Ecommerce.Capabilities.Persistence.State;
 using Ecommerce.Capabilities.Supporting;
-using Ecommerce.Messaging.Kafka.Producers.Serializers;
 
 namespace Ecommerce.Messaging.Kafka.Producers;
 
@@ -19,13 +19,18 @@ public abstract class BaseMessageProducer<TValue>: IMessageProducer<TValue> wher
 {    
     private const string EcommerceBrokerEndpoints = "ECOMMERCE_BROKER_ENDPOINTS";
     private const string EcommerceTopicProductCreated = "ECOMMERCE_TOPIC_PRODUCT_CHANGELOG";
-    protected IProducer<string, TValue> Producer { get; }
+    private const string SchemaRegistryEndpoints = "SCHEMA_REGISTRY_ENDPOINTS";
+    protected ProducerConfig ProducerConfig { get; }
+    
+    protected SchemaRegistryConfig SchemaRegistryConfig { get; }
+    
     protected string TopicDestination { get; }
 
     protected BaseMessageProducer(IConfig config)
     {
         var configBrokers = config.FromEnvironment(EcommerceBrokerEndpoints);
         var configTopicPublishing = config.FromEnvironment(EcommerceTopicProductCreated);
+        var schemaRegistryEndpoints = config.FromEnvironment(SchemaRegistryEndpoints);
 
         if (configBrokers.IsSucceded == false)
         {
@@ -37,28 +42,31 @@ public abstract class BaseMessageProducer<TValue>: IMessageProducer<TValue> wher
             throw new ArgumentException(EcommerceTopicProductCreated);
         }
         
+        if (!schemaRegistryEndpoints.IsSucceded || string.IsNullOrEmpty(schemaRegistryEndpoints.Succeded))
+        {
+            throw new ArgumentException(SchemaRegistryEndpoints);
+        }
+        
         TopicDestination = configTopicPublishing.Succeded;
         
-        ProducerConfig producerConfig = new ProducerConfig
+        SchemaRegistryConfig = new SchemaRegistryConfig()
+        {
+            Url = schemaRegistryEndpoints.Succeded
+        };
+        
+        ProducerConfig = new ProducerConfig
         {
             BootstrapServers = configBrokers.Succeded,
             RequestTimeoutMs = 4000,
-            Acks = Acks.Leader, // can be set to All 
-            // EnableIdempotence = true, // this includes a unique id every message published
-            RetryBackoffMs = 3, // number off reties in case off failure
-            MessageTimeoutMs = 3000, // timmeout for sucessefull message delivery confirmation,
-            // Debug = "all"
+            RetryBackoffMs = 100, // número de tentavidade entrega
+            MessageTimeoutMs = 5000, // timmeout para confirmação de entrega
+            
+            Acks = Acks.Leader, // can be set to All eleva confiabilidade 
+            // EnableIdempotence = true, // propriedade inclui um ID único em cada mensagem, que pode contribuir
+            // para semântica exactly-once 
+            
+            // Debug = "msg", // pode ser "all" em case de necessidade :)
         };
-
-        Producer = Build<string>(producerConfig);
-    }
-    
-    private IProducer<TKey, TValue> Build<TKey>(ProducerConfig config)
-    {
-        var producer = new ProducerBuilder<TKey, TValue>(config)
-            .SetValueSerializer(new MySimpleWrapJsonSerializer<TValue>())
-            .Build();
-        return producer;
     }
     
     public abstract Task<Result<bool, Failure>> Produce(TValue change, CancellationToken cancellationToken);
