@@ -11,7 +11,6 @@ using DFlow.Validation;
 using Ecommerce.Capabilities;
 using Ecommerce.Capabilities.Messaging;
 using Ecommerce.Capabilities.Persistence.Repositories;
-using Ecommerce.Capabilities.Persistence.State;
 using Ecommerce.Capabilities.Persistence.States;
 using Ecommerce.Domain;
 using Ecommerce.Domain.Events;
@@ -40,14 +39,14 @@ public class ProductRepositoryWithEvents : IProductRepository
 
         var cancel = new CancellationTokenSource();
 
-        var oldState = await this._dbContext.Set<ProductBaseState>()
+        var oldState = await this._dbContext.Set<ProductState>()
             .AsNoTracking()
             .Where(e => e.Id.Equals(entity.Identity.Value))
             .FirstOrDefaultAsync(cancel.Token);
 
         if (oldState == null)
         {
-            this._dbContext.Set<ProductBaseState>().Add(entry);
+            this._dbContext.Set<ProductState>().Add(entry);
         }
         else
         {
@@ -67,7 +66,7 @@ public class ProductRepositoryWithEvents : IProductRepository
     {
         var cancel = new CancellationTokenSource();
 
-        var oldState = await this._dbContext.Set<ProductBaseState>()
+        var oldState = await this._dbContext.Set<ProductState>()
             .AsNoTracking()
             .Where(e => e.Id.Equals(entity.Identity.Value))
             .FirstOrDefaultAsync(cancel.Token);
@@ -79,12 +78,12 @@ public class ProductRepositoryWithEvents : IProductRepository
         }
 
         var entry = entity.ToProductState();
-        _dbContext.Set<ProductBaseState>().Remove(entry);
+        _dbContext.Set<ProductState>().Remove(entry);
 
         await PublishChanges(entity, cancel.Token);
     }
 
-    public async Task<IReadOnlyList<Product>> FindAsync(Expression<Func<ProductBaseState, bool>> predicate
+    public async Task<IReadOnlyList<Product>> FindAsync(Expression<Func<ProductState, bool>> predicate
         , CancellationToken cancellationToken)
     {
         return await FindAsync(predicate, this._initialPageNumber, this._recordPageSizeLimit, cancellationToken);
@@ -97,13 +96,13 @@ public class ProductRepositoryWithEvents : IProductRepository
         return result.Count == 0 ? Product.Empty() : result.First();
     }
 
-    public async Task<IReadOnlyList<Product>> FindAsync(Expression<Func<ProductBaseState, bool>> predicate,
+    public async Task<IReadOnlyList<Product>> FindAsync(Expression<Func<ProductState, bool>> predicate,
         int pageNumber,
         int pageSize, CancellationToken cancellationToken)
     {
         try
         {
-            return await this._dbContext.Set<ProductBaseState>()
+            return await this._dbContext.Set<ProductState>()
                 .Where(predicate).AsNoTracking()
                 .Skip(pageSize * (pageNumber - 1))
                 .Take(pageSize)

@@ -18,7 +18,6 @@ namespace Ecommerce.Messaging.Kafka.Producers;
 public abstract class BaseMessageProducer<TValue>: IMessageProducer<TValue> where TValue:class
 {    
     private const string EcommerceBrokerEndpoints = "ECOMMERCE_BROKER_ENDPOINTS";
-    private const string EcommerceTopicProductCreated = "ECOMMERCE_TOPIC_PRODUCT_CHANGELOG";
     private const string SchemaRegistryEndpoints = "SCHEMA_REGISTRY_ENDPOINTS";
     protected ProducerConfig ProducerConfig { get; }
     
@@ -26,10 +25,10 @@ public abstract class BaseMessageProducer<TValue>: IMessageProducer<TValue> wher
     
     protected string TopicDestination { get; }
 
-    protected BaseMessageProducer(IConfig config)
+    protected BaseMessageProducer(IConfig config, string ecommerceTopicProduct)
     {
         var configBrokers = config.FromEnvironment(EcommerceBrokerEndpoints);
-        var configTopicPublishing = config.FromEnvironment(EcommerceTopicProductCreated);
+        var configTopicPublishing = config.FromEnvironment(ecommerceTopicProduct);
         var schemaRegistryEndpoints = config.FromEnvironment(SchemaRegistryEndpoints);
 
         if (configBrokers.IsSucceded == false)
@@ -39,7 +38,7 @@ public abstract class BaseMessageProducer<TValue>: IMessageProducer<TValue> wher
         
         if (!configTopicPublishing.IsSucceded || string.IsNullOrEmpty(configTopicPublishing.Succeded))
         {
-            throw new ArgumentException(EcommerceTopicProductCreated);
+            throw new ArgumentException(ecommerceTopicProduct);
         }
         
         if (!schemaRegistryEndpoints.IsSucceded || string.IsNullOrEmpty(schemaRegistryEndpoints.Succeded))
@@ -58,7 +57,7 @@ public abstract class BaseMessageProducer<TValue>: IMessageProducer<TValue> wher
         {
             BootstrapServers = configBrokers.Succeded,
             RequestTimeoutMs = 4000,
-            RetryBackoffMs = 100, // número de tentavidade entrega
+            RetryBackoffMs = 100, // número de tentativas de entrega
             MessageTimeoutMs = 5000, // timmeout para confirmação de entrega
             
             Acks = Acks.Leader, // can be set to All eleva confiabilidade 

@@ -4,15 +4,15 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-using Ecommerce.Capabilities.Persistence.States;
+using Ecommerce.Capabilities.Querying.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Ecommerce.Persistence.Mappings;
+namespace Ecommerce.Persistence.Querying.Mappings;
 
-public class ProductStateMapping : IEntityTypeConfiguration<ProductState>
+public class ProductViewMapping : IEntityTypeConfiguration<ProductView>
 {
-    public void Configure(EntityTypeBuilder<ProductState> builder)
+    public void Configure(EntityTypeBuilder<ProductView> builder)
     {
         builder.ToTable("products");
         builder.Property(e => e.Id)
@@ -25,6 +25,5 @@ public class ProductStateMapping : IEntityTypeConfiguration<ProductState>
 
         builder.Property(e => e.IsDeleted).HasColumnName("is_deleted");
         builder.HasQueryFilter(user => EF.Property<bool>(user, "IsDeleted") == false);
-        builder.Property(e => e.RowVersion).HasColumnName("row_version");
     }
 }

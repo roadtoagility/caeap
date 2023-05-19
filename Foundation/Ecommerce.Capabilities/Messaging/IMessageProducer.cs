@@ -6,7 +6,6 @@
 
 
 using DFlow.Validation;
-using Ecommerce.Capabilities.Persistence.State;
 
 namespace Ecommerce.Capabilities.Messaging;
 

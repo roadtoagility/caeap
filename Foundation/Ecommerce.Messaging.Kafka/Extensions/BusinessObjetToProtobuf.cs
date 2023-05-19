@@ -30,6 +30,7 @@ public static class BusinessObjetToProtobuf
             case nameof(ProductCreatedEvent):
                 exported.ProductCreated = new ProductCreatedEventProto
                 {
+                    Id = stateChange.EventData.RootElement.GetProperty("Id").GetString(),
                     Name = stateChange.EventData.RootElement.GetProperty("Name").GetString(),
                     Description = stateChange.EventData.RootElement.GetProperty("Description").GetString(),
                     Weight = stateChange.EventData.RootElement.GetProperty("Weight").GetDouble(),
@@ -40,6 +41,7 @@ public static class BusinessObjetToProtobuf
             case nameof(ProductUpdatedEvent):
                 exported.ProductUpdated = new ProductUpdatedEventProto
                 {
+                    Id = stateChange.EventData.RootElement.GetProperty("Id").GetString(),
                     Description = stateChange.EventData.RootElement.GetProperty("Description").GetString(),
                     Weight = stateChange.EventData.RootElement.GetProperty("Weight").GetDouble(),
                     EventTime = Timestamp.FromDateTimeOffset(stateChange.EventData.RootElement

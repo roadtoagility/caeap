@@ -5,14 +5,14 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 using DFlow.BusinessObjects;
-using Ecommerce.Capabilities.Persistence.State;
+using Ecommerce.Capabilities.Persistence.States;
 using Ecommerce.Domain;
 
 namespace Ecommerce.Persistence.ExtensionMethods;
 
 public static class BusinessObjectsExtensions
 {
-    public static ProductBaseState ToProductState(this Product product)
+    public static ProductState ToProductState(this Product product)
     {
         return new(
             product.Identity.Value,
@@ -22,13 +22,13 @@ public static class BusinessObjectsExtensions
             BitConverter.GetBytes(product.Version.Value));
     }
 
-    public static Product ToProduct(this ProductBaseState baseState)
+    public static Product ToProduct(this ProductState state)
     {
         return Product.From(
-            ProductId.From(baseState.Id),
-            ProductName.From(baseState.Name),
-            ProductDescription.From(baseState.Description),
-            ProductWeight.From(baseState.Weight),
-            VersionId.From(BitConverter.ToInt32(baseState.RowVersion)));
+            ProductId.From(state.Id),
+            ProductName.From(state.Name),
+            ProductDescription.From(state.Description),
+            ProductWeight.From(state.Weight),
+            VersionId.From(BitConverter.ToInt32(state.RowVersion)));
     }
 }

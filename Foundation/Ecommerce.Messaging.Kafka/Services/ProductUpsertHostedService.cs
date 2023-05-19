@@ -17,7 +17,8 @@ public class ProductUpsertHostedService: BackgroundService
     private readonly ILogger<ProductUpsertHostedService> _logger;
     private readonly IProductAgregateConsumer _consumer;
     
-    public ProductUpsertHostedService(IProductAgregateConsumer consumer, 
+    public ProductUpsertHostedService(IProductAgregateConsumer consumer,
+        IServiceProvider services,
         ILogger<ProductUpsertHostedService> logger)
     {
         _logger = logger;

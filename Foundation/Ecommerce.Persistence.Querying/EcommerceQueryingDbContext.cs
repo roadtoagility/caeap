@@ -5,37 +5,37 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 using Ecommerce.Capabilities.Persistence.States;
+using Ecommerce.Capabilities.Querying.Views;
 using Ecommerce.Capabilities.Supporting;
-using Ecommerce.Persistence.Mappings;
+using Ecommerce.Persistence.Querying.Mappings;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ecommerce.Persistence;
+namespace Ecommerce.Persistence.Querying;
 
-public sealed class EcommerceAppDbContext : DbContext
+public sealed class EcommerceQueryingDbContext : DbContext
 {
-    private const string EcommerceModelDatabase = "ECOMMERCE_MODEL_DATABASE";
+    private const string EcommerceQueryingDatabase = "ECOMMERCE_QUERYING_DATABASE";
     private readonly string _connectionString;
     
-    public EcommerceAppDbContext(IConfig config)
+    public EcommerceQueryingDbContext(IConfig config)
     {
-        var result = config.FromEnvironment(EcommerceModelDatabase);
+        var result = config.FromEnvironment(EcommerceQueryingDatabase);
 
         if (!result.IsSucceded)
         {
-            throw new ArgumentException(EcommerceModelDatabase);
+            throw new ArgumentException(EcommerceQueryingDatabase);
         }
 
         _connectionString = result.Succeded;
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(_connectionString,o => o.UseNodaTime());
+        optionsBuilder.UseNpgsql(_connectionString);
     }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        new ProductStateMapping().Configure(modelBuilder.Entity<ProductState>());
-        new AggregateStateMapping().Configure(modelBuilder.Entity<AggregateState>());
+        new ProductViewMapping().Configure(modelBuilder.Entity<ProductView>());
     }
     
     public override int SaveChanges()

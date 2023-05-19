@@ -20,10 +20,11 @@ namespace Ecommerce.Messaging.Kafka.Producers;
 
 public class ProducerProductChangelog: BaseMessageProducer<AggregateState>
 {
+    private const string EcommerceTopicProductCreated = "ECOMMERCE_TOPIC_PRODUCT_CHANGELOG";
     private readonly ILogger<ProducerProductChangelog> _logger;
     
     public ProducerProductChangelog(IConfig config, ILogger<ProducerProductChangelog> logger)
-    :base(config)
+    :base(config,EcommerceTopicProductCreated)
     {
         _logger = logger;
     }
