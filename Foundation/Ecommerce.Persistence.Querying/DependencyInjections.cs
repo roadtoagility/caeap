@@ -15,7 +15,7 @@ namespace Ecommerce.Persistence.Querying;
 
 public static class DependencyInjections
 {
-    public static void AddRepositories(this IServiceCollection services)
+    public static void AddQueryRepositories(this IServiceCollection services)
     {
         services.AddScoped<EcommerceQueryingDbContext>();
         services.AddScoped<IRepository<ProductView,ProductView>, ProductQuerying>();

@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DOCS", "_DOCS", "{136AA2C5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcommerceWebAPI", "EcommerceWebAPI\EcommerceWebAPI.csproj", "{E2A494FF-C7F1-4C86-9AB4-B74CBD0B47A0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql", "sql", "{4684C274-DE84-46B8-ADE7-38CA9F469A5E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Business", "Ecommerce.Business\Ecommerce.Business.csproj", "{08CCB849-1A00-487A-8D30-6256045CD618}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Capabilities", "Ecommerce.Capabilities\Ecommerce.Capabilities.csproj", "{0932BF34-E349-4E8E-9567-D01F985530AA}"

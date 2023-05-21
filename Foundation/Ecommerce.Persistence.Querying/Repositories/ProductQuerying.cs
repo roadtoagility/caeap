@@ -7,8 +7,6 @@
 
 using System.Linq.Expressions;
 using DFlow.Persistence.Repositories;
-using Ecommerce.Capabilities.Persistence.States;
-using Ecommerce.Capabilities.Querying.Repositories;
 using Ecommerce.Capabilities.Querying.Views;
 using Ecommerce.Domain;
 using Microsoft.EntityFrameworkCore;
@@ -43,9 +41,15 @@ public class ProductQuerying : IRepository<ProductView, ProductView>
         }
     }
 
-    public Task<IReadOnlyList<ProductView>> FindAsync(Expression<Func<ProductView, bool>> predicate, CancellationToken cancellationToken)
+    // https://www.postgresql.org/docs/14/textsearch.html
+    // https://www.postgresql.org/docs/14/textsearch-tables.html
+    // https://www.npgsql.org/efcore/mapping/full-text-search.html?tabs=pg12%2Cv5
+    // 
+    public async Task<IReadOnlyList<ProductView>> FindAsync(Expression<Func<ProductView, bool>> predicate, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await _dbContext.Set<ProductView>().AsNoTracking()
+            .Where(predicate)
+            .ToListAsync(cancellationToken);
     }
 
     public async Task Remove(ProductView entity)

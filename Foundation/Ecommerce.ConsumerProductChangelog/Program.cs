@@ -16,7 +16,7 @@ builder.Configuration
     .AddEnvironmentVariables("ECOMMERCE_");
 
 builder.Services.AddSupporting();
-builder.Services.AddRepositories();
+builder.Services.AddQueryRepositories();
 //hosted services
 builder.Services.AddConsumers();
 

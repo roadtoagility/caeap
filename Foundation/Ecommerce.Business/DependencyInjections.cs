@@ -5,6 +5,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+using Ecommerce.Capabilities.Querying.Views;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Ecommerce.Business;

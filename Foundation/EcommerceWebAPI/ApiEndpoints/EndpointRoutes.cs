@@ -6,6 +6,7 @@
 
 
 using Ecommerce.Business;
+using Ecommerce.Capabilities.Querying.Views;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceWebAPI.ApiEndpoints;

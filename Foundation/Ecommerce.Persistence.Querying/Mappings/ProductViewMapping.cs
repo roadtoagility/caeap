@@ -22,8 +22,18 @@ public class ProductViewMapping : IEntityTypeConfiguration<ProductView>
         builder.Property(e => e.Name).HasColumnName("name");
         builder.Property(e => e.Description).HasColumnName("description");
         builder.Property(e => e.Weight).HasColumnName("weight");
+        
+        //criando um indeix
+        builder.HasIndex(b => new { b.Name, b.Description })
+            .HasMethod("GIN")
+            .IsTsVectorExpressionIndex("portuguese");
 
+        // EntityFramework remuve rows that match to this criteria
         builder.Property(e => e.IsDeleted).HasColumnName("is_deleted");
         builder.HasQueryFilter(user => EF.Property<bool>(user, "IsDeleted") == false);
+        
+        //for concurrency using a xmin system collunm
+        // builder.Property(e => e.RowVersion)
+        //     .IsRowVersion();
     }
 }

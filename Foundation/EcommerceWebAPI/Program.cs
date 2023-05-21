@@ -1,6 +1,7 @@
 using Ecommerce.Business;
 using Ecommerce.Messaging.Kafka;
 using Ecommerce.Persistence;
+using Ecommerce.Persistence.Querying;
 using EcommerceWebAPI;
 using EcommerceWebAPI.ApiEndpoints;
 using Microsoft.AspNetCore.Http.Json;
@@ -14,6 +15,7 @@ builder.Configuration
 builder.Services.AddSupporting();
 builder.Services.AddProducers();
 builder.Services.AddRepositories();
+builder.Services.AddQueryRepositories();
 builder.Services.AddHandlers();
 
 builder.Services.AddControllers();

@@ -13,6 +13,5 @@ namespace Ecommerce.Capabilities.Persistence.Repositories;
 
 public interface IProductRepository : IRepository<ProductState, Product>
 {
-    Task Add(Product entity);
     Task<Product> GetById(ProductId id, CancellationToken cancellationToken);
 }
