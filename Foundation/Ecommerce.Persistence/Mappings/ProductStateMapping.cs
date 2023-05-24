@@ -22,9 +22,10 @@ public class ProductStateMapping : IEntityTypeConfiguration<ProductState>
         builder.Property(e => e.Name).HasColumnName("name");
         builder.Property(e => e.Description).HasColumnName("description");
         builder.Property(e => e.Weight).HasColumnName("weight");
-
+        builder.Property(e => e.Price).HasColumnName("price");
+        
         builder.Property(e => e.IsDeleted).HasColumnName("is_deleted");
         builder.HasQueryFilter(user => EF.Property<bool>(user, "IsDeleted") == false);
-        builder.Property(e => e.RowVersion).HasColumnName("row_version");
+        builder.Property(e => e.RowVersion).IsRowVersion();
     }
 }

@@ -27,13 +27,15 @@ public sealed class ProductUpdateHandler : ICommandHandler<ProductUpdate, Guid>
         return Execute(command, CancellationToken.None);
     }
 
-    public async Task<Result<Guid, IReadOnlyList<Failure>>> Execute(ProductUpdate command, CancellationToken cancellationToken)
+    public async Task<Result<Guid, IReadOnlyList<Failure>>> Execute(ProductUpdate command
+        , CancellationToken cancellationToken)
     {
         var product = await this._sessionDb.Repository.GetById(ProductId.From(command.Id),cancellationToken);
         
         var aggregate = ProductAggregationRoot.Create(product);
         
-        aggregate.Update(ProductDescription.From(command.Description),ProductWeight.From(command.Weight));
+        aggregate.Update(ProductDescription.From(command.Description),ProductWeight.From(command.Weight)
+            , ProductPrice.From(command.Price));
 
         if (!aggregate.IsValid)
         {

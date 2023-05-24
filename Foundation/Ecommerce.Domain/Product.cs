@@ -11,17 +11,19 @@ namespace Ecommerce.Domain;
 public sealed class Product : EntityBase<ProductId>
 {
     public Product(ProductId identity, ProductName name, ProductDescription description, ProductWeight weight,
-        VersionId version)
+        ProductPrice price, VersionId version)
         : base(identity, version)
     {
         Description = description;
         Name = name;
         Weight = weight;
+        Price = price;
 
         AppendValidationResult(identity.ValidationStatus.Failures);
         AppendValidationResult(description.ValidationStatus.Failures);
         AppendValidationResult(name.ValidationStatus.Failures);
         AppendValidationResult(weight.ValidationStatus.Failures);
+        AppendValidationResult(price.ValidationStatus.Failures);
     }
 
     public ProductName Name { get; }
@@ -29,6 +31,8 @@ public sealed class Product : EntityBase<ProductId>
     public ProductWeight Weight { get; }
     public ProductDescription Description { get; }
 
+    public ProductPrice Price { get; }
+    
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Identity;
@@ -38,26 +42,27 @@ public sealed class Product : EntityBase<ProductId>
     }
 
     public static Product From(ProductId id, ProductName name, ProductDescription description
-        , ProductWeight weight, VersionId version)
+        , ProductWeight weight, ProductPrice price, VersionId version)
     {
-        return new Product(id, name, description, weight, version);
+        return new Product(id, name, description, weight, price, version);
     }
 
     public static Product NewProduct(ProductName name, ProductDescription description
-        , ProductWeight weight)
+        , ProductWeight weight, ProductPrice price)
     {
-        return From(ProductId.NewId(), name, description, weight, VersionId.New());
+        return From(ProductId.NewId(), name, description, weight, price, VersionId.New());
     }
 
     public static Product Empty()
     {
         return From(ProductId.Empty, ProductName.Empty, ProductDescription.Empty
-            , ProductWeight.Empty, VersionId.Empty());
+            , ProductWeight.Empty, ProductPrice.Empty, VersionId.Empty());
     }
 
-    public static Product CombineDescriptionAndWeight(Product aggregateRootEntity, ProductDescription description, ProductWeight weight)
+    public static Product CombineDescriptionAndWeight(Product aggregateRootEntity, ProductDescription description
+        , ProductWeight weight, ProductPrice price)
     {
-        return From(aggregateRootEntity.Identity, aggregateRootEntity.Name, description, weight,
-            VersionId.Next(aggregateRootEntity.Version));
+        return From(aggregateRootEntity.Identity, aggregateRootEntity.Name, description, weight, price
+            , VersionId.Next(aggregateRootEntity.Version));
     }
 }

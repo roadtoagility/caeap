@@ -32,7 +32,9 @@ public sealed class ProductCreateHandler : ICommandHandler<ProductCreate, Guid>
     {
         var aggregate = ProductAggregationRoot.Create(ProductName.From(command.Name),
             ProductDescription.From(command.Description),
-            ProductWeight.From(command.Weight));
+            ProductWeight.From(command.Weight),
+            ProductPrice.From(command.Price)
+            );
         
         if (aggregate.IsValid)
         {

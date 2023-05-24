@@ -13,19 +13,21 @@ namespace Ecommerce.Domain.Events;
 public class ProductCreatedEvent : DomainEvent
 {
     public ProductCreatedEvent(ProductId id, ProductName name, ProductDescription description
-        , ProductWeight weight, DateTimeOffset when)
+        , ProductWeight weight, ProductPrice price, DateTimeOffset when)
     :base(when)
     {
         Id = id.Value;
         Name = name.Value;
         Description = description.Value;
         Weight = weight.Value;
+        Price = price.Value;
     }
 
     public Guid Id { get; }
     public string Name { get; }
     public string Description { get; }
     public double Weight { get; }
+    public double Price { get; }
 
     public static ProductCreatedEvent For(Product product)
     {
@@ -34,6 +36,7 @@ public class ProductCreatedEvent : DomainEvent
             product.Name,
             product.Description, 
             product.Weight,
+            product.Price,
             DateTimeOffset.UtcNow);
     }
 }

@@ -5,9 +5,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-using System.Collections.Immutable;
 using System.Linq.Expressions;
-using Ecommerce.Capabilities.Messaging;
 using Ecommerce.Capabilities.Persistence.Repositories;
 using Ecommerce.Capabilities.Persistence.States;
 using Ecommerce.Domain;

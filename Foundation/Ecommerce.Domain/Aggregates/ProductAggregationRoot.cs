@@ -23,9 +23,10 @@ public sealed class ProductAggregationRoot : AggregateBase<Product, ProductId>
         }
     }
 
-    public static ProductAggregationRoot Create(ProductName name, ProductDescription description, ProductWeight weight)
+    public static ProductAggregationRoot Create(ProductName name, ProductDescription description
+        , ProductWeight weight, ProductPrice price)
     {
-        var product = Product.NewProduct(name, description, weight);
+        var product = Product.NewProduct(name, description, weight, price);
         return new ProductAggregationRoot(product);
     }
 
@@ -34,9 +35,9 @@ public sealed class ProductAggregationRoot : AggregateBase<Product, ProductId>
         return new ProductAggregationRoot(product);
     }
     
-    public void Update(ProductDescription description, ProductWeight weight)
+    public void Update(ProductDescription description, ProductWeight weight, ProductPrice price)
     {
-        var current = Product.CombineDescriptionAndWeight(Root, description, weight);
+        var current = Product.CombineDescriptionAndWeight(Root, description, weight, price);
         
         if (current.IsValid)
         {

@@ -19,6 +19,7 @@ public static class BusinessObjectsExtensions
             product.Name.Value,
             product.Description.Value,
             product.Weight.Value,
+            product.Price.Value,
             BitConverter.GetBytes(product.Version.Value));
     }
 
@@ -29,6 +30,7 @@ public static class BusinessObjectsExtensions
             ProductName.From(state.Name),
             ProductDescription.From(state.Description),
             ProductWeight.From(state.Weight),
+            ProductPrice.From(state.Price),
             VersionId.From(BitConverter.ToInt32(state.RowVersion)));
     }
 }

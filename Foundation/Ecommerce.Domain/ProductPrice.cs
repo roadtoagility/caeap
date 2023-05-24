@@ -9,9 +9,9 @@ using DFlow.Validation;
 
 namespace Ecommerce.Domain;
 
-public class ProductWeight : ValueOf<float, ProductWeight>
+public class ProductPrice : ValueOf<float, ProductPrice>
 {
-    public static ProductWeight Empty
+    public static ProductPrice Empty
     {
         get
         {
@@ -24,7 +24,7 @@ public class ProductWeight : ValueOf<float, ProductWeight>
         if (Value <= 0)
         {
             ValidationStatus.Append(Failure
-                .For("ProductWeight", $"O Peso {Value} informado não é valido."));
+                .For("Price", $"O preço {Value} informado não é valido."));
         }
     }
 }

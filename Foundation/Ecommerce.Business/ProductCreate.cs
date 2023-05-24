@@ -6,4 +6,4 @@
 
 namespace Ecommerce.Business;
 
-public record ProductCreate(string Description, string Name, float Weight);
+public record ProductCreate(string Description, string Name, float Weight, float Price);

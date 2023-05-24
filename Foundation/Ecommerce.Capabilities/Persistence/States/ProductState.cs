@@ -1,5 +1,5 @@
 namespace Ecommerce.Capabilities.Persistence.States;
 
 public sealed record ProductState(Guid Id, string Name, string Description
-        , double Weight, byte[] RowVersion)
+        , float Weight, float Price, byte[] RowVersion)
     : BaseState(RowVersion);

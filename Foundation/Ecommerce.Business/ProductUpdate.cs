@@ -6,5 +6,5 @@
 
 namespace Ecommerce.Business;
 
-public record ProductUpdateDetail(string Description, float Weight);
-public record ProductUpdate(Guid Id, string Description, float Weight);
+public record ProductUpdateDetail(string Name, string Description, float Weight, float Price);
+public record ProductUpdate(Guid Id, string Name, string Description, float Weight, float Price);

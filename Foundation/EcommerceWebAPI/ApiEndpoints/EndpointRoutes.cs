@@ -7,6 +7,7 @@
 
 using Ecommerce.Business;
 using Ecommerce.Capabilities.Querying.Views;
+using Ecommerce.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceWebAPI.ApiEndpoints;
@@ -32,7 +33,12 @@ public static class EndpointRoutes
             [FromBody] ProductUpdateDetail command,
             [FromServices] ICommandHandler<ProductUpdate, Guid> handler) =>
         {
-            var result = await handler.Execute(new ProductUpdate(productId, command.Description, command.Weight));
+            var result = await handler.Execute(new ProductUpdate(
+                productId, 
+                command.Name,
+                command.Description, 
+                command.Weight,
+                command.Price));
         
             if (result.IsSucceded == false)
             {

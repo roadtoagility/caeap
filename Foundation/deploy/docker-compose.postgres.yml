@@ -4,6 +4,14 @@ services:
 
   postgres:
     image: debezium/postgres:14
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '1'
+          memory: 1G
     container_name: postgres
     restart: always
     environment:
