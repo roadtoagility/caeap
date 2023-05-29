@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Ecommerce.Business\Ecommerce.Business.csproj" />
     <ProjectReference Include="..\Ecommerce.Capabilities\Ecommerce.Capabilities.csproj" />
+    <ProjectReference Include="..\Ecommerce.Domain\Ecommerce.Domain.csproj" />
     <ProjectReference Include="..\Ecommerce.Messaging.Kafka\Ecommerce.Messaging.Kafka.csproj" />
     <ProjectReference Include="..\Ecommerce.Persistence.Querying\Ecommerce.Persistence.Querying.csproj" />
     <ProjectReference Include="..\Ecommerce.Supporting\Ecommerce.Supporting.csproj" />

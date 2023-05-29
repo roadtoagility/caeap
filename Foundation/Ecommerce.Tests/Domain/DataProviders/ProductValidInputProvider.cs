@@ -20,6 +20,7 @@ public class ProductValidInputProvider : IEnumerable<object[]>
         ProductName.From("name"),
         ProductDescription.From("descrição"),
         ProductWeight.From(1.0f),
+        ProductPrice.From(1.0f),
         VersionId.From(1)
     );
 
@@ -28,7 +29,7 @@ public class ProductValidInputProvider : IEnumerable<object[]>
         new object[]
         {
             productId, ProductName.From("name"), ProductDescription.From("descrição"),
-            ProductWeight.From(1.0f), VersionId.From(1), product
+            ProductWeight.From(1.0f), ProductPrice.From(1.0f), VersionId.From(1), product
         }
     };
 

@@ -20,9 +20,10 @@ public class ProductTests
         ProductName name,
         ProductDescription description,
         ProductWeight weight,
+        ProductPrice price,
         VersionId versionId, Product expected)
     {
-        var product = Product.From(productId, name, description, weight, versionId);
+        var product = Product.From(productId, name, description, weight, price, versionId);
         Assert.Equal(expected, product);
     }
 }

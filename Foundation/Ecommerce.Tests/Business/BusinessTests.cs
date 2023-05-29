@@ -16,13 +16,14 @@ namespace Ecommerce.Tests.Business;
 public class BusinessTests
 {
     [Theory]
-    [InlineData("descrição","name",1.0f)]
+    [InlineData("descrição","name",1.0f, 1.0f)]
     public async void create_new_product(
         string description,
         string name,
-        float weight)
+        float weight,
+        float price)
     {
-        var command = new ProductCreate(description, name, weight);
+        var command = new ProductCreate(description, name, weight, price);
         var session = NSubstitute.Substitute.For<IDbSession<IProductRepository>>();
         
         var handler = new ProductCreateHandler(session);
