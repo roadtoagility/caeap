@@ -2,8 +2,9 @@ using Ecommerce.Business;
 using Ecommerce.Messaging.Kafka;
 using Ecommerce.Persistence;
 using Ecommerce.Persistence.Querying;
-using EcommerceWebAPI;
-using EcommerceWebAPI.ApiEndpoints;
+using Ecommerce.Supporting;
+using ProductWebAPI;
+using ProductWebAPI.ApiEndpoints;
 using Microsoft.AspNetCore.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);

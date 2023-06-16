@@ -28,7 +28,7 @@
         <ProjectReference Include="..\Ecommerce.Persistence.Querying\Ecommerce.Persistence.Querying.csproj" />
         <ProjectReference Include="..\Ecommerce.Persistence\Ecommerce.Persistence.csproj" />
         <ProjectReference Include="..\Ecommerce.Supporting\Ecommerce.Supporting.csproj" />
-        <ProjectReference Include="..\EcommerceWebAPI\EcommerceWebAPI.csproj" />
+        <ProjectReference Include="..\ProductWebAPI\ProductWebAPI.csproj" />
     </ItemGroup>
 
 </Project>

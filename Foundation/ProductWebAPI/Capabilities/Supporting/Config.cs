@@ -9,7 +9,7 @@ using DFlow.Validation;
 using Ecommerce.Capabilities;
 using Ecommerce.Capabilities.Supporting;
 
-namespace EcommerceWebAPI.Capabilities.Supporting;
+namespace ProductWebAPI.Capabilities.Supporting;
 
 public class Config: IConfig
 {

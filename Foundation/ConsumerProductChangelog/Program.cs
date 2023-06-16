@@ -5,9 +5,9 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-using Ecommerce.ConsumerProductChangelog;
 using Ecommerce.Messaging.Kafka;
 using Ecommerce.Persistence.Querying;
+using Ecommerce.Supporting;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -10,7 +10,7 @@ using Ecommerce.Capabilities.Querying.Views;
 using Ecommerce.Domain;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EcommerceWebAPI.ApiEndpoints;
+namespace ProductWebAPI.ApiEndpoints;
 
 public static class EndpointRoutes
 {

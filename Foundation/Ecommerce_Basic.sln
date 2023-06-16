@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DOCS", "_DOCS", "{136AA2C5
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcommerceWebAPI", "EcommerceWebAPI\EcommerceWebAPI.csproj", "{E2A494FF-C7F1-4C86-9AB4-B74CBD0B47A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductWebAPI", "ProductWebAPI\ProductWebAPI.csproj", "{E2A494FF-C7F1-4C86-9AB4-B74CBD0B47A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Business", "Ecommerce.Business\Ecommerce.Business.csproj", "{08CCB849-1A00-487A-8D30-6256045CD618}"
 EndProject
@@ -31,17 +31,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Drivers", "Drivers", "{3C54
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C411EF5-3212-439C-A03F-E08DF1EA7DFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.ConsumerProductChangelog", "Ecommerce.ConsumerProductChangelog\Ecommerce.ConsumerProductChangelog.csproj", "{E05E967C-B848-4DC9-B941-41C6DD23D742}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumerProductChangelog", "ConsumerProductChangelog\ConsumerProductChangelog.csproj", "{E05E967C-B848-4DC9-B941-41C6DD23D742}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Supporting", "Ecommerce.Supporting\Ecommerce.Supporting.csproj", "{2B4ACE72-DEF3-4D0E-9A9E-06DD07422471}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Persistence.Querying", "Ecommerce.Persistence.Querying\Ecommerce.Persistence.Querying.csproj", "{0D37BA55-7D7F-41B3-B012-360333B45621}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Persistence.Npgsql", "Ecommerce.Persistence.Npgsql\Ecommerce.Persistence.Npgsql.csproj", "{7569376E-8A74-4B38-A3D7-5FA08A6E2B40}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSProduct", "MSProduct", "{0014D859-2EBA-42BA-8E80-9B891F4E0058}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSOrders", "MSOrders", "{7ADE57B6-7F62-4041-AA24-0499C7013508}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{C35EB92E-151D-4800-A6DD-5A757096436E}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\docker-compose.kafka-kraft.yml = deploy\docker-compose.kafka-kraft.yml
+		deploy\docker-compose.kafka.yml = deploy\docker-compose.kafka.yml
+		deploy\docker-compose.postgres.yml = deploy\docker-compose.postgres.yml
+		deploy\postgres_ecommerce.sql = deploy\postgres_ecommerce.sql
+		deploy\postgres_ecommerce_querying.sql = deploy\postgres_ecommerce_querying.sql
+		deploy\servers.json = deploy\servers.json
+		deploy\SETUP.md = deploy\SETUP.md
+		deploy\update_run.sh = deploy\update_run.sh
+		deploy\docker-compose.postgres -pgbench.yml = deploy\docker-compose.postgres -pgbench.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,10 +104,6 @@ Global
 		{0D37BA55-7D7F-41B3-B012-360333B45621}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D37BA55-7D7F-41B3-B012-360333B45621}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D37BA55-7D7F-41B3-B012-360333B45621}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7569376E-8A74-4B38-A3D7-5FA08A6E2B40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7569376E-8A74-4B38-A3D7-5FA08A6E2B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7569376E-8A74-4B38-A3D7-5FA08A6E2B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7569376E-8A74-4B38-A3D7-5FA08A6E2B40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E2A494FF-C7F1-4C86-9AB4-B74CBD0B47A0} = {3FEE3891-2E7B-4301-8BE1-1124A04B8B50}
@@ -110,7 +117,6 @@ Global
 		{E05E967C-B848-4DC9-B941-41C6DD23D742} = {3FEE3891-2E7B-4301-8BE1-1124A04B8B50}
 		{2B4ACE72-DEF3-4D0E-9A9E-06DD07422471} = {3C5494E5-2E22-4B51-80B9-6384FD5F90F2}
 		{0D37BA55-7D7F-41B3-B012-360333B45621} = {3C5494E5-2E22-4B51-80B9-6384FD5F90F2}
-		{7569376E-8A74-4B38-A3D7-5FA08A6E2B40} = {3C5494E5-2E22-4B51-80B9-6384FD5F90F2}
 		{3FEE3891-2E7B-4301-8BE1-1124A04B8B50} = {0014D859-2EBA-42BA-8E80-9B891F4E0058}
 		{DDF484C0-662B-4892-9074-F888A698C55B} = {0014D859-2EBA-42BA-8E80-9B891F4E0058}
 		{38235911-7A4F-4117-8A08-D3FC7F6CE03F} = {0014D859-2EBA-42BA-8E80-9B891F4E0058}

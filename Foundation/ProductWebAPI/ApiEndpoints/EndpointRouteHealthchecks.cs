@@ -4,7 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-namespace EcommerceWebAPI.ApiEndpoints;
+namespace ProductWebAPI.ApiEndpoints;
 
 // https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-8.0
 public static class EndpointRouteHealthchecks
