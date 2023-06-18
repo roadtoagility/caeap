@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latestmajor</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="2.1.1" />
+    <PackageReference Include="Confluent.SchemaRegistry.Serdes.Protobuf" Version="2.1.1" />
+    <PackageReference Include="DFlow.Persistence" Version="0.8.2" />
+    <PackageReference Include="Google.Protobuf" Version="3.23.3" />
+    <PackageReference Include="Grpc.Tools" Version="2.54.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
+    <PackageReference Include="NodaTime" Version="3.1.9" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Stock.Capabilities\Stock.Capabilities.csproj" />
+    <ProjectReference Include="..\Stock.Domain\Stock.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="..\..\Protos\product-aggregate.proto">
+      <Link>Protos\product-aggregate.proto</Link>
+    </Protobuf>
+    <Protobuf Include="..\..\Protos\product-event-created.proto">
+      <Link>Protos\product-event-created.proto</Link>
+    </Protobuf>
+    <Protobuf Include="..\..\Protos\product-event-updated.proto">
+      <Link>Protos\product-event-updated.proto</Link>
+    </Protobuf>
+  </ItemGroup>
+</Project>

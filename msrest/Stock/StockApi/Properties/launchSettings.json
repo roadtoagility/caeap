@@ -1,0 +1,21 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "EcommerceWebAPI": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:7777",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:7777",
+        "ECOMMERCE_MODEL_DATABASE": "Host=localhost;Database=ecommerce;Username=postgres;Password=postgres;Pooling=true;SearchPath=ecommerce;",
+        "ECOMMERCE_QUERYING_DATABASE": "Host=localhost;Database=ecommerce_querying;Username=postgres;Password=postgres;Pooling=true;SearchPath=ecommerce;",
+        "ECOMMERCE_BROKER_ENDPOINTS": "localhost:9092",
+        "SCHEMA_REGISTRY_ENDPOINTS": "http://localhost:8081",
+        "ECOMMERCE_TOPIC_PRODUCT_CHANGELOG": "sales.ecommerce.product.changelog"
+      }
+    }
+  }
+}

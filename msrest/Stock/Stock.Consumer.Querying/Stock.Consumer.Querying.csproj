@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>10</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Stock.Business\Stock.Business.csproj" />
+    <ProjectReference Include="..\Stock.Capabilities\Stock.Capabilities.csproj" />
+    <ProjectReference Include="..\Stock.Domain\Stock.Domain.csproj" />
+    <ProjectReference Include="..\Stock.Messaging.Kafka\Stock.Messaging.Kafka.csproj" />
+    <ProjectReference Include="..\Stock.Querying.EFCore\Stock.Querying.EFCore.csproj" />
+    <ProjectReference Include="..\Stock.Supporting\Stock.Supporting.csproj" />
+  </ItemGroup>
+</Project>
