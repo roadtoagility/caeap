@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <LangVersion>latestmajor</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoFixture" Version="4.18.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.16" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.5" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="xunit" Version="2.4.2" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Stock.Business\Stock.Business.csproj" />
+        <ProjectReference Include="..\Stock.Capabilities\Stock.Capabilities.csproj" />
+        <ProjectReference Include="..\Stock.Domain\Stock.Domain.csproj" />
+        <ProjectReference Include="..\Stock.Messaging.Kafka\Stock.Messaging.Kafka.csproj" />
+        <ProjectReference Include="..\Stock.Querying.EFCore\Stock.Querying.EFCore.csproj" />
+        <ProjectReference Include="..\Stock.Persistence.EFCore\Stock.Persistence.EFCore.csproj" />
+        <ProjectReference Include="..\Stock.Supporting\Stock.Supporting.csproj" />
+        <ProjectReference Include="..\StockApi\Stock.RestAPI.csproj" />
+    </ItemGroup>
+
+</Project>
