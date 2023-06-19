@@ -7,7 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Ecommerce.Tests.Domain.DataProviders;
+namespace Stock.Tests.Domain.DataProviders;
 
 public class ProductNameInvalidInputProvider : IEnumerable<object[]>
 {

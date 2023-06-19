@@ -15,7 +15,7 @@ public static class DependencyInjections
 {
     public static void AddRepositories(this IServiceCollection services)
     {
-        services.AddDbContext<EcommerceAppDbContext>();
+        services.AddDbContext<StockDbContext>();
         services.AddScoped<IProductRepository, ProductRepositoryWithEvents>();
         services.AddScoped<IDbSession<IProductRepository>, DbSession<IProductRepository>>();
     }

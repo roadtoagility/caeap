@@ -16,6 +16,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C411EF5-3212-439C-A03F-E08DF1EA7DFA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{C35EB92E-151D-4800-A6DD-5A757096436E}"
+	ProjectSection(SolutionItems) = preProject
+		..\deploy\servers.json = ..\deploy\servers.json
+		..\deploy\docker-compose.kafka-kraft.yml = ..\deploy\docker-compose.kafka-kraft.yml
+		..\deploy\docker-compose.postgres.yml = ..\deploy\docker-compose.postgres.yml
+		..\deploy\postgres_stock.sql = ..\deploy\postgres_stock.sql
+		..\deploy\postgres_stock_outbox.sql = ..\deploy\postgres_stock_outbox.sql
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stock.RestAPI", "StockApi\Stock.RestAPI.csproj", "{EA8D060F-CA07-4B08-8FCE-43F51EC4B4F4}"
 EndProject
@@ -34,6 +41,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stock.Messaging.Kafka", "Stock.Messaging.Kafka\Stock.Messaging.Kafka.csproj", "{4EE04150-D388-4467-BC44-B0D088EC92E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stock.Supporting", "Stock.Supporting\Stock.Supporting.csproj", "{1665FF65-D804-4EE7-B342-ADB5E375EABA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stock.Tests", "Stock.Tests\Stock.Tests.csproj", "{FB540ED4-611B-4A33-91F8-491F83BBD007}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stock.Tests.Integration", "Stock.Tests.Integration\Stock.Tests.Integration.csproj", "{AD31A0CD-BAFE-4699-BA2A-0138CFF55565}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +88,14 @@ Global
 		{1665FF65-D804-4EE7-B342-ADB5E375EABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1665FF65-D804-4EE7-B342-ADB5E375EABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1665FF65-D804-4EE7-B342-ADB5E375EABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB540ED4-611B-4A33-91F8-491F83BBD007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB540ED4-611B-4A33-91F8-491F83BBD007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB540ED4-611B-4A33-91F8-491F83BBD007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB540ED4-611B-4A33-91F8-491F83BBD007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD31A0CD-BAFE-4699-BA2A-0138CFF55565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD31A0CD-BAFE-4699-BA2A-0138CFF55565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD31A0CD-BAFE-4699-BA2A-0138CFF55565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD31A0CD-BAFE-4699-BA2A-0138CFF55565}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EA8D060F-CA07-4B08-8FCE-43F51EC4B4F4} = {3FEE3891-2E7B-4301-8BE1-1124A04B8B50}
@@ -88,5 +107,7 @@ Global
 		{4EE04150-D388-4467-BC44-B0D088EC92E2} = {3C5494E5-2E22-4B51-80B9-6384FD5F90F2}
 		{D9E6AD12-B2BD-4F02-96A3-766826FA4A8D} = {3FEE3891-2E7B-4301-8BE1-1124A04B8B50}
 		{1665FF65-D804-4EE7-B342-ADB5E375EABA} = {3C5494E5-2E22-4B51-80B9-6384FD5F90F2}
+		{FB540ED4-611B-4A33-91F8-491F83BBD007} = {4C411EF5-3212-439C-A03F-E08DF1EA7DFA}
+		{AD31A0CD-BAFE-4699-BA2A-0138CFF55565} = {4C411EF5-3212-439C-A03F-E08DF1EA7DFA}
 	EndGlobalSection
 EndGlobal

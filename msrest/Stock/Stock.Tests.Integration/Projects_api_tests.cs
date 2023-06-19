@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Ecommerce.Tests.Integration.Support;
+using Stock.Tests.Integration.Support;
 using Xunit;
 
-namespace Ecommerce.Tests.Integration
+namespace Stock.Tests.Integration
 {
-    public class Projects_api_tests : IClassFixture<EcommerceSUT<Program>>
+    public class Projects_api_tests : IClassFixture<StockSut<Program>>
     {
-        private readonly EcommerceSUT<Program> _factory;
+        private readonly StockSut<Program> _factory;
 
-        public Projects_api_tests(EcommerceSUT<Program> factory)
+        public Projects_api_tests(StockSut<Program> factory)
         {
             _factory = factory;
         }

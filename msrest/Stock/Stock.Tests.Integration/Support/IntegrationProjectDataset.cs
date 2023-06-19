@@ -5,7 +5,7 @@ namespace Stock.Tests.Integration.Support
 {
     public class IntegrationProjectDataset
     {
-        public IntegrationProjectDataset(EcommerceAppDbContext db)
+        public IntegrationProjectDataset(StockDbContext db)
         {
             DbContext = db;
 
@@ -38,7 +38,7 @@ namespace Stock.Tests.Integration.Support
         }
 
         public Fixture DatabaseFixture { get; }
-        public EcommerceAppDbContext DbContext { get; }
+        public StockDbContext DbContext { get; }
 
         public void InitializeDbForTests()
         {

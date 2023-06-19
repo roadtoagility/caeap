@@ -17,12 +17,10 @@ namespace Stock.Persistence.Repositories;
 
 public class ProductRepository : IProductRepository
 {
-    private readonly EcommerceAppDbContext _dbContext;
-    private readonly int initialPageNumber = 1;
-    private readonly int recordPageSizeLimit = 20;
+    private readonly StockDbContext _dbContext;
     
 
-    public ProductRepository(EcommerceAppDbContext dbContext)
+    public ProductRepository(StockDbContext dbContext)
     {
         this._dbContext = dbContext;
     }

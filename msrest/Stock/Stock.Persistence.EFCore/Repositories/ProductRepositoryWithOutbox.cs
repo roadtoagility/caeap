@@ -19,12 +19,12 @@ namespace Stock.Persistence.Repositories;
 
 public class ProductRepositoryWithOutbox : IProductRepository
 {
-    private readonly EcommerceAppDbContext _dbContext;
+    private readonly StockDbContext _dbContext;
     private readonly int initialPageNumber = 1;
     private readonly int recordPageSizeLimit = 20;
     
 
-    public ProductRepositoryWithOutbox(EcommerceAppDbContext dbContext)
+    public ProductRepositoryWithOutbox(StockDbContext dbContext)
     {
         this._dbContext = dbContext;
     }

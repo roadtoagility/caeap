@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using Ecommerce.Persistence;
+using Stock.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Ecommerce.Tests.Integration.Support
+namespace Stock.Tests.Integration.Support
 {
-    public class EcommerceSUT<TStartup>
+    public class StockSut<TStartup>
         : WebApplicationFactory<TStartup> where TStartup : class
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -19,12 +19,12 @@ namespace Ecommerce.Tests.Integration.Support
             {
                 var descriptor = services.SingleOrDefault(
                     d => d.ServiceType ==
-                         typeof(DbContextOptions<EcommerceAppDbContext>));
+                         typeof(DbContextOptions<StockDbContext>));
 
                 Debug.Assert(descriptor != null, nameof(descriptor) + " != null");
                 services.Remove(descriptor);
 
-                services.AddDbContext<EcommerceAppDbContext>(options =>
+                services.AddDbContext<StockDbContext>(options =>
                 {
                     options.UseInMemoryDatabase("EmMemoriaBancoParaTeste");
                     options.EnableSensitiveDataLogging();
@@ -35,9 +35,9 @@ namespace Ecommerce.Tests.Integration.Support
                 using (var scope = sp.CreateScope())
                 {
                     var scopedServices = scope.ServiceProvider;
-                    var db = scopedServices.GetRequiredService<EcommerceAppDbContext>();
+                    var db = scopedServices.GetRequiredService<StockDbContext>();
                     var logger = scopedServices
-                        .GetRequiredService<ILogger<EcommerceSUT<TStartup>>>();
+                        .GetRequiredService<ILogger<StockSut<TStartup>>>();
 
                     db.Database.EnsureDeleted();
                     db.Database.EnsureCreated();

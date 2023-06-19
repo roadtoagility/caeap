@@ -22,12 +22,12 @@ namespace Stock.Persistence.Repositories;
 
 public class ProductRepositoryWithEvents : IProductRepository
 {
-    private readonly EcommerceAppDbContext _dbContext;
+    private readonly StockDbContext _dbContext;
     private readonly int _initialPageNumber = 1;
     private readonly int _recordPageSizeLimit = 20;
     private readonly IMessageProducer<AggregateState> _messageProducer;
 
-    public ProductRepositoryWithEvents(EcommerceAppDbContext dbContext, 
+    public ProductRepositoryWithEvents(StockDbContext dbContext, 
         IMessageProducer<AggregateState> messageProducer)
     {
         _dbContext = dbContext;

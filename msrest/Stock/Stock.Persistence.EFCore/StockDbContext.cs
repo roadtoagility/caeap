@@ -11,18 +11,18 @@ using Stock.Persistence.Mappings;
 
 namespace Stock.Persistence;
 
-public sealed class EcommerceAppDbContext : DbContext
+public sealed class StockDbContext : DbContext
 {
-    private const string EcommerceModelDatabase = "ECOMMERCE_MODEL_DATABASE";
+    private const string StockModelDatabase = "STOCK_MODEL_DATABASE";
     private readonly string _connectionString;
     
-    public EcommerceAppDbContext(IConfig config)
+    public StockDbContext(IConfig config)
     {
-        var result = config.FromEnvironment(EcommerceModelDatabase);
+        var result = config.FromEnvironment(StockModelDatabase);
 
         if (!result.IsSucceded)
         {
-            throw new ArgumentException(EcommerceModelDatabase);
+            throw new ArgumentException(StockModelDatabase);
         }
 
         _connectionString = result.Succeded;

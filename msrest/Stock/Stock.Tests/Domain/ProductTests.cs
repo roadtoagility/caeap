@@ -5,11 +5,11 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 using DFlow.BusinessObjects;
-using Ecommerce.Domain;
-using Ecommerce.Tests.Domain.DataProviders;
+using Stock.Domain;
+using Stock.Tests.Domain.DataProviders;
 using Xunit;
 
-namespace Ecommerce.Tests.Domain;
+namespace Stock.Tests.Domain;
 
 public class ProductTests
 {

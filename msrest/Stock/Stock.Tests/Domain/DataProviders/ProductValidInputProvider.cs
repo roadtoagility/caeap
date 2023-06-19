@@ -8,9 +8,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DFlow.BusinessObjects;
-using Ecommerce.Domain;
+using Stock.Domain;
 
-namespace Ecommerce.Tests.Domain.DataProviders;
+namespace Stock.Tests.Domain.DataProviders;
 
 public class ProductValidInputProvider : IEnumerable<object[]>
 {

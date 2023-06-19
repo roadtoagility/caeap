@@ -28,7 +28,7 @@ public static class EndpointRoutes
             return Results.Ok(result);
         });
 
-        app.MapPut("/api/v1/products/{productId:guid}", async ([FromRoute]Guid productId, 
+        app.MapPut("/products/{productId:guid}", async ([FromRoute]Guid productId, 
             [FromBody] ProductUpdateDetail command,
             [FromServices] ICommandHandler<ProductUpdate, Guid> handler) =>
         {

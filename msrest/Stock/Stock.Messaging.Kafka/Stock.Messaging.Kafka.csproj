@@ -24,13 +24,13 @@
     <ProjectReference Include="..\Stock.Domain\Stock.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Protobuf Include="..\..\Protos\product-aggregate.proto">
+    <Protobuf Include="..\Protos\product-aggregate.proto">
       <Link>Protos\product-aggregate.proto</Link>
     </Protobuf>
-    <Protobuf Include="..\..\Protos\product-event-created.proto">
+    <Protobuf Include="..\Protos\product-event-created.proto">
       <Link>Protos\product-event-created.proto</Link>
     </Protobuf>
-    <Protobuf Include="..\..\Protos\product-event-updated.proto">
+    <Protobuf Include="..\Protos\product-event-updated.proto">
       <Link>Protos\product-event-updated.proto</Link>
     </Protobuf>
   </ItemGroup>

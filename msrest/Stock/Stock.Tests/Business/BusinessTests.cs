@@ -5,13 +5,12 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 using DFlow.Persistence;
-using Ecommerce.Business;
-using Ecommerce.Capabilities.Persistence.Repositories;
-using Ecommerce.Tests.Domain.DataProviders;
 using FluentAssertions;
+using Stock.Business;
+using Stock.Capabilities.Persistence.Repositories;
 using Xunit;
 
-namespace Ecommerce.Tests.Business;
+namespace Stock.Tests.Business;
 
 public class BusinessTests
 {

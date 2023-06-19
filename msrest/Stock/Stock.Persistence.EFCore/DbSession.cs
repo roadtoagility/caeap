@@ -12,7 +12,7 @@ namespace Stock.Persistence;
 
 public class DbSession<TRepository> : IDbSession<TRepository>, IDisposable
 {
-    public DbSession(EcommerceAppDbContext context, TRepository repository)
+    public DbSession(StockDbContext context, TRepository repository)
     {
         Context = context;
         Repository = repository;
