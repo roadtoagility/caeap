@@ -9,15 +9,15 @@ using DFlow.Validation;
 using Ecommerce.Capabilities;
 using Ecommerce.Capabilities.Persistence.Repositories;
 using Ecommerce.Domain;
-using Ecommerce.Domain.Events;
+using Ecommerce.Domain.Aggregates;
 
 namespace Ecommerce.Business;
 
-public sealed class ProductCreateHandler : ICommandHandler<ProductCreate, Guid>
+public sealed class ProductCreateWithAggregationHandler : ICommandHandler<ProductCreate, Guid>
 {
     private readonly IDbSession<IProductRepository> _sessionDb;
 
-    public ProductCreateHandler(IDbSession<IProductRepository> sessionDb)
+    public ProductCreateWithAggregationHandler(IDbSession<IProductRepository> sessionDb)
     {
         this._sessionDb = sessionDb;
     }
@@ -30,21 +30,19 @@ public sealed class ProductCreateHandler : ICommandHandler<ProductCreate, Guid>
     public async Task<Result<Guid, IReadOnlyList<Failure>>> 
         Execute(ProductCreate command, CancellationToken cancellationToken)
     {
-        var product =  Product.NewProduct(ProductName.From(command.Name),
-                            ProductDescription.From(command.Description),
-                            ProductWeight.From(command.Weight),
-                            ProductPrice.From(command.Price)
-                        );
+        var aggregate = ProductAggregationRoot.Create(ProductName.From(command.Name),
+            ProductDescription.From(command.Description),
+            ProductWeight.From(command.Weight),
+            ProductPrice.From(command.Price)
+            );
         
-        if (product.IsValid)
+        if (aggregate.IsValid)
         {
-            product.RaisedEvent(ProductCreatedEvent.For(product));
-            
-            await this._sessionDb.Repository.Add(product);
+            await this._sessionDb.Repository.Add(aggregate.GetChange());
             await this._sessionDb.SaveChangesAsync(cancellationToken);
-            return Result<Guid, IReadOnlyList<Failure>>.SucceedFor(product.Identity.Value);
+            return Result<Guid, IReadOnlyList<Failure>>.SucceedFor(aggregate.GetChange().Identity.Value);
         }
 
-        return Result<Guid, IReadOnlyList<Failure>>.FailedFor(product.Failures);
+        return Result<Guid, IReadOnlyList<Failure>>.FailedFor(aggregate.Failures);
     }
 }

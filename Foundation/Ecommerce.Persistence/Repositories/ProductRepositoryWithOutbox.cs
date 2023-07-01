@@ -20,9 +20,9 @@ namespace Ecommerce.Persistence.Repositories;
 public class ProductRepositoryWithOutbox : IProductRepository
 {
     private readonly EcommerceAppDbContext _dbContext;
-    private readonly int initialPageNumber = 1;
-    private readonly int recordPageSizeLimit = 20;
-    
+    private const int InitialPageNumber = 1;
+    private const int RecordPageSizeLimit = 20;
+
 
     public ProductRepositoryWithOutbox(EcommerceAppDbContext dbContext)
     {
@@ -87,7 +87,7 @@ public class ProductRepositoryWithOutbox : IProductRepository
     public async Task<IReadOnlyList<Product>> FindAsync(Expression<Func<ProductState, bool>> predicate
         , CancellationToken cancellationToken)
     {
-        return await FindAsync(predicate, this.initialPageNumber, this.recordPageSizeLimit, cancellationToken);
+        return await FindAsync(predicate, InitialPageNumber, RecordPageSizeLimit, cancellationToken);
     }
 
     public async Task<Product> GetById(ProductId id, CancellationToken cancellation)

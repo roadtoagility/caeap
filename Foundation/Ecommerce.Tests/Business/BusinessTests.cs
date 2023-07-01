@@ -26,7 +26,7 @@ public class BusinessTests
         var command = new ProductCreate(description, name, weight, price);
         var session = NSubstitute.Substitute.For<IDbSession<IProductRepository>>();
         
-        var handler = new ProductCreateHandler(session);
+        var handler = new ProductCreateWithAggregationHandler(session);
         var result = await handler.Execute(command);
             
         result.IsSucceded.Should().BeTrue();
