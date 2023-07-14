@@ -15,6 +15,6 @@ public class Result<TSucceded, TFailed>
         new Result<TSucceded, TFailed>{IsSucceded = true,Succeded = value};
 
     public bool IsSucceded { get; private set; } 
-    public TSucceded Succeded { get; private set; }
+    public TSucceded Succeded { get; private set; } 
     public TFailed Failed { get; private set; }
 }
