@@ -26,6 +26,6 @@ public class ProductStateMapping : IEntityTypeConfiguration<ProductState>
         
         builder.Property(e => e.IsDeleted).HasColumnName("is_deleted");
         builder.HasQueryFilter(user => EF.Property<bool>(user, "IsDeleted") == false);
-        builder.Property(e => e.RowVersion).IsRowVersion();
+        builder.Property(e => e.RowVersion).HasColumnName("row_version");
     }
 }

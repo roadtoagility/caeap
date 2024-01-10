@@ -47,17 +47,17 @@ public static class EndpointRoutes
             return Results.Ok(result.Succeded);
         });
         
-        app.MapGet("/api/v1/products", async (
-            [FromServices] IQueryHandler<ProductList, IReadOnlyList<ProductView>> handler) =>
-        {
-            var result = await handler.Execute(new ProductList("", "", 1, 10));
-            if (result.IsSucceded == false)
-            {
-                return Results.BadRequest(result.Failed);
-                
-            }
-
-            return Results.Ok(result.Succeded);
-        });
+        // app.MapGet("/api/v1/products", async (
+        //     [FromServices] IQueryHandler<ProductList, IReadOnlyList<ProductView>> handler) =>
+        // {
+        //     var result = await handler.Execute(new ProductList("", "", 1, 10));
+        //     if (result.IsSucceded == false)
+        //     {
+        //         return Results.BadRequest(result.Failed);
+        //         
+        //     }
+        //
+        //     return Results.Ok(result.Succeded);
+        // });
     }
 }

@@ -15,7 +15,7 @@ namespace Stock.Messaging.Kafka.Producers;
 
 public abstract class BaseMessageProducer<TValue>: IMessageProducer<TValue> where TValue:class
 {    
-    private const string EcommerceBrokerEndpoints = "ECOMMERCE_BROKER_ENDPOINTS";
+    private const string EcommerceBrokerEndpoints = "STOCK_BROKER_ENDPOINTS";
     private const string SchemaRegistryEndpoints = "SCHEMA_REGISTRY_ENDPOINTS";
     protected ProducerConfig ProducerConfig { get; }
     

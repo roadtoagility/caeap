@@ -6,4 +6,4 @@
 
 namespace Stock.Business;
 
-public record ProductCreate(string Description, string Name, float Weight, float Price);
+public record ProductCreate(string Description, string Name, float Weight, decimal Price);

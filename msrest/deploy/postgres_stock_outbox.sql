@@ -4,8 +4,8 @@ SET
     search_path TO stock;
 
 -- enable PostGis 
-CREATE
-    EXTENSION postgis;
+-- CREATE
+--     EXTENSION postgis;
 
 -- enable uuidv4
 create extension "uuid-ossp";
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS stock.products_outbox
 -- this is not necessary because do we use the event source style and we are interest just in the insertion logs 
 --ALTER TABLE products_on_hand REPLICA IDENTITY FULL;
 
-CREATE PUBLICATION products_outbox_pub FOR TABLE products_outbox WITH (publish = 'insert');
+CREATE PUBLICATION products_outbox_pub FOR TABLE stock.products_outbox WITH (publish = 'insert');
 --ALTER PUBLICATION products_outbox_pub ADD/DROP TABLE teble-name
 --ALTER PUBLICATION products_outbox_pub SET (publish = 'insert');
 
@@ -32,7 +32,7 @@ CREATE PUBLICATION products_outbox_pub FOR TABLE products_outbox WITH (publish =
 SELECT * FROM pg_create_logical_replication_slot('products_outbox_slot', 'pgoutput');
 
 -- Create and populate our products using a single insert with many rows
-CREATE TABLE products
+CREATE TABLE stock.products
 (
     id          uuid         NOT NULL PRIMARY KEY,
     name        VARCHAR(255) NOT NULL,
@@ -54,7 +54,7 @@ VALUES ('09ed82f6-4469-40ec-b601-943c7c848d6b', 'scooter', 'Small 2-wheel scoote
        ('e33a923b-48a2-45b4-ad32-9a2b436ce1bd', 'spare tire', '24 inch spare tire', 22.2, false, '\x01000000');
 
 -- Create and populate the products on hand using multiple inserts
-CREATE TABLE products_on_hand
+CREATE TABLE stock.products_on_hand
 (
     product_id uuid    NOT NULL PRIMARY KEY,
     quantity   INTEGER NOT NULL,
@@ -114,14 +114,14 @@ VALUES ('a05e7cf4-2379-4c2f-87cf-d087088aa1de', '2016-01-16', '8bf35186-b69c-478
        ('3d9b0048-3b53-475f-add7-c0286c28ccb2', '2016-02-21', '5d9c16fa-9f7a-444c-be61-804f474588e5', 1, '72234aa3-a1d6-483f-821a-ec541e045372');
 
 -- Create table with Spatial/Geometry type
-CREATE TABLE geom
-(
-    id uuid     NOT NULL PRIMARY KEY,
-    g  GEOMETRY NOT NULL,
-    h  GEOMETRY
-);
-
-INSERT INTO geom
-VALUES ('511a0563-fa63-4698-a9c2-fa3dfac23ba1', ST_GeomFromText('POINT(1 1)')),
-       ('8cabfe03-9500-4f8c-a6dc-c89847af92fb', ST_GeomFromText('LINESTRING(2 1, 6 6)')),
-       ('28db3095-204a-446c-b041-c43960dde815', ST_GeomFromText('POLYGON((0 5, 2 5, 2 7, 0 7, 0 5))'));
+-- CREATE TABLE geom
+-- (
+--     id uuid     NOT NULL PRIMARY KEY,
+--     g  GEOMETRY NOT NULL,
+--     h  GEOMETRY
+-- );
+-- 
+-- INSERT INTO geom
+-- VALUES ('511a0563-fa63-4698-a9c2-fa3dfac23ba1', ST_GeomFromText('POINT(1 1)')),
+--        ('8cabfe03-9500-4f8c-a6dc-c89847af92fb', ST_GeomFromText('LINESTRING(2 1, 6 6)')),
+--        ('28db3095-204a-446c-b041-c43960dde815', ST_GeomFromText('POLYGON((0 5, 2 5, 2 7, 0 7, 0 5))'));

@@ -6,5 +6,5 @@
 
 namespace Stock.Business;
 
-public record ProductUpdateDetail(string Name, string Description, float Weight, float Price);
-public record ProductUpdate(Guid Id, string Name, string Description, float Weight, float Price);
+public record ProductUpdateDetail(string Name, string Description, float Weight, decimal Price);
+public record ProductUpdate(Guid Id, string Name, string Description, float Weight, decimal Price);

@@ -16,6 +16,6 @@ public static class DependencyInjections
     {
         services.AddScoped<ICommandHandler<ProductCreate, Guid>, ProductCreateHandler>();
         services.AddScoped<ICommandHandler<ProductUpdate, Guid>, ProductUpdateHandler>();
-        services.AddScoped<IQueryHandler<ProductList, IReadOnlyList<ProductView>>, ProductListHandler>();
+        // services.AddScoped<IQueryHandler<ProductList, IReadOnlyList<ProductView>>, ProductListHandler>();
     }
 }

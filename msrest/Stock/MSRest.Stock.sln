@@ -46,6 +46,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{132987E8
 		..\deploy\postgres_stock.sql = ..\deploy\postgres_stock.sql
 		..\deploy\postgres_stock_outbox.sql = ..\deploy\postgres_stock_outbox.sql
 		..\deploy\servers.json = ..\deploy\servers.json
+		..\deploy\postgres_stock_querying.sql = ..\deploy\postgres_stock_querying.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containers", "Containers", "{84D626F6-129B-4D4E-BB57-CD7745D42D78}"

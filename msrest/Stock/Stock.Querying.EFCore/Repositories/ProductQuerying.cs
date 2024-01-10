@@ -7,13 +7,11 @@
 
 using System.Linq.Expressions;
 using DFlow.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Stock.Capabilities.Querying.Views;
 using Stock.Domain;
-using Microsoft.EntityFrameworkCore;
-using Stock.Querying;
 
-
-namespace Stock.Persistence.Querying.Repositories;
+namespace Stock.Querying.Repositories;
 
 public class ProductQuerying : IRepository<ProductView, ProductView>
 {

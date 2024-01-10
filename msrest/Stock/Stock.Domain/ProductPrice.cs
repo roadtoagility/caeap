@@ -9,13 +9,13 @@ using DFlow.Validation;
 
 namespace Stock.Domain;
 
-public class ProductPrice : ValueOf<float, ProductPrice>
+public class ProductPrice : ValueOf<decimal, ProductPrice>
 {
     public static ProductPrice Empty
     {
         get
         {
-            return From(-1.0f);
+            return From(0);
         }
     }
 

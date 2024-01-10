@@ -22,6 +22,7 @@ public class ProductViewMapping : IEntityTypeConfiguration<ProductView>
         builder.Property(e => e.Name).HasColumnName("name");
         builder.Property(e => e.Description).HasColumnName("description");
         builder.Property(e => e.Weight).HasColumnName("weight");
+        builder.Property(e => e.Price).HasColumnName("price");
         
         //criando um indeix
         builder.HasIndex(b => new { b.Name, b.Description })

@@ -10,4 +10,5 @@ message ProductCreatedEvent {
     double weight = 3;
     google.protobuf.Timestamp event_time = 4;
     string id = 5;
+    double price = 6;
 }

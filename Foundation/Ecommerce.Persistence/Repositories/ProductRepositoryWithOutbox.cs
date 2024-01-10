@@ -35,7 +35,6 @@ public class ProductRepositoryWithOutbox : IProductRepository
         var cancel = new CancellationTokenSource();
 
         var oldState = await this._dbContext.Set<ProductState>()
-            .AsNoTracking()
             .Where(e => e.Id.Equals(entity.Identity.Value))
             .FirstOrDefaultAsync(cancel.Token);
 

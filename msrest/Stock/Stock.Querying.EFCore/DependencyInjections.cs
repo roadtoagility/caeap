@@ -9,7 +9,7 @@ using DFlow.Persistence.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using Stock.Capabilities.Querying.Views;
 using Stock.Persistence.Querying;
-using Stock.Persistence.Querying.Repositories;
+using Stock.Querying.Repositories;
 
 namespace Stock.Querying;
 
