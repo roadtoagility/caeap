@@ -23,8 +23,8 @@ namespace Stock.Messaging.Kafka.Consumers;
 
 public class ConsumerProductUpsert: IProductAggregateConsumer
 {
-    private const string EcommerceBrokerEndpoints = "ECOMMERCE_BROKER_ENDPOINTS";
-    private const string EcommerceTopicProductChangelog = "ECOMMERCE_TOPIC_PRODUCT_CHANGELOG";
+    private const string EcommerceBrokerEndpoints = "STOCK_BROKER_ENDPOINTS";
+    private const string EcommerceTopicProductChangelog = "STOCK_TOPIC_PRODUCT_CHANGELOG";
     private const string ConsumerGroupProductChangelog = "ProductChangelog";
 
     private readonly ConsumerConfig _consumerConfig;
@@ -58,8 +58,8 @@ public class ConsumerProductUpsert: IProductAggregateConsumer
             
             // at-least once - let kafka cliente manage the commits, but I do control the offsetstore
             // https://docs.confluent.io/kafka-clients/dotnet/current/overview.html#store-offsets
-            EnableAutoCommit = true, // commit é controlado pela kafka cliente
-            AutoCommitIntervalMs = 5000,  // update to kafka - pode estar alinhado com com o volume de mensagens
+            EnableAutoCommit = true, // commit é controlado pelo kafka cliente
+            AutoCommitIntervalMs = 5000,  // update to kafka - pode estar alinhado com o volume de mensagens
             EnableAutoOffsetStore = false, // em falhas da aplicação sem processar mensagens o offsetstore não avança
                                             // a mensagem é reenviada
             PartitionAssignmentStrategy = PartitionAssignmentStrategy.CooperativeSticky, // em caso de rebalance o broker 
@@ -112,14 +112,16 @@ public class ConsumerProductUpsert: IProductAggregateConsumer
                     aggregate.ProductCreated.Name,
                     aggregate.ProductCreated.Description,
                     aggregate.ProductCreated.Weight,
+                    Convert.ToDecimal(aggregate.ProductCreated.Price),
                     false
                 ),
                 nameof(ProductUpdatedEvent) => new ProductView( 
-                    string.IsNullOrEmpty(aggregate.ProductCreated.Id)? Guid.NewGuid(): 
-                        Guid.Parse(aggregate.ProductCreated.Id),
-                    aggregate.ProductCreated.Name,
-                    aggregate.ProductCreated.Description,
-                    aggregate.ProductCreated.Weight,
+                    string.IsNullOrEmpty(aggregate.ProductUpdated.Id)? Guid.NewGuid(): 
+                        Guid.Parse(aggregate.ProductUpdated.Id),
+                    aggregate.ProductUpdated.Name,
+                    aggregate.ProductUpdated.Description,
+                    aggregate.ProductUpdated.Weight,
+                    Convert.ToDecimal(aggregate.ProductUpdated.Price),
                     false
                 ),
                 null => throw new ArgumentException(nameof(aggregate))

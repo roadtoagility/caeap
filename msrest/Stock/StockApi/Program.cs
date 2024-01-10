@@ -9,11 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
-    .AddEnvironmentVariables("ECOMMERCE_");
+    .AddEnvironmentVariables("STOCK_");
 
 builder.Services.AddSupporting();
 builder.Services.AddProducers();
 builder.Services.AddRepositories();
+// builder.Services.AddConsumers();
 builder.Services.AddHandlers();
 
 builder.Services.AddControllers();

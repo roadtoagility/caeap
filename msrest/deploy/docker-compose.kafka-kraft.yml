@@ -69,15 +69,6 @@ services:
       - schema-registry
     ports:
       - 8080:8080
-#  kafka-ui:
-#    container_name: kafka-ui
-#    image: consdata/kouncil:latest
-#    ports:
-#      - 8080:8080
-#    environment:
-#      bootstrapServers: 'broker:29092'
-#      kouncil.auth.active-provider: "inmemory"
-
 #  rest-proxy:
 #    image: confluentinc/cp-kafka-rest:7.4.0
 #    depends_on:

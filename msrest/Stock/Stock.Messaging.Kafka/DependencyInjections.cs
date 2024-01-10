@@ -26,4 +26,9 @@ public static class DependencyInjections
         services.AddSingleton<IProductAggregateConsumer, ConsumerProductUpsert>();
         services.AddHostedService<ProductUpsertHostedService>();
     }
+    
+    public static void AddWorkers(this IServiceCollection services)
+    {
+        services.AddHostedService<ProductUpsertHostedService>();
+    }
 }

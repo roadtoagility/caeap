@@ -1,16 +1,13 @@
 -- Create the schema that we'll use to populate data and watch the effect in the binlog
 CREATE SCHEMA ecommerce;
+
 SET
     search_path TO ecommerce;
-
--- enable PostGis 
-CREATE
-    EXTENSION postgis;
 
 -- enable uuidv4
 create extension "uuid-ossp";
 
-CREATE TABLE IF NOT EXISTS ecommerce.products_outbox
+CREATE TABLE IF NOT EXISTS products_outbox
 (
     id uuid NOT NULL,
     aggregate_id uuid NOT NULL,
@@ -112,16 +109,3 @@ VALUES ('a05e7cf4-2379-4c2f-87cf-d087088aa1de', '2016-01-16', '8bf35186-b69c-478
        ('d3de8109-eaf1-4af5-85a2-98acd385659d', '2016-01-17', '2bd05da3-1a6b-499c-bfcf-c71f5a660ec0', 2, '441e2178-ef95-4c81-b043-8d5156a9f035'),
        ('8dc516b7-04d3-4ee5-8770-8e789b5582ac', '2016-02-19', '4e00e823-4ab3-4a32-ae69-8a47a9b4c9bd', 2, 'd4a8d6ad-6680-491a-ac64-d7b48da522b3'),
        ('3d9b0048-3b53-475f-add7-c0286c28ccb2', '2016-02-21', '5d9c16fa-9f7a-444c-be61-804f474588e5', 1, '72234aa3-a1d6-483f-821a-ec541e045372');
-
--- Create table with Spatial/Geometry type
-CREATE TABLE geom
-(
-    id uuid     NOT NULL PRIMARY KEY,
-    g  GEOMETRY NOT NULL,
-    h  GEOMETRY
-);
-
-INSERT INTO geom
-VALUES ('511a0563-fa63-4698-a9c2-fa3dfac23ba1', ST_GeomFromText('POINT(1 1)')),
-       ('8cabfe03-9500-4f8c-a6dc-c89847af92fb', ST_GeomFromText('LINESTRING(2 1, 6 6)')),
-       ('28db3095-204a-446c-b041-c43960dde815', ST_GeomFromText('POLYGON((0 5, 2 5, 2 7, 0 7, 0 5))'));

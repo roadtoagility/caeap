@@ -27,7 +27,7 @@ public class ProductCreatedEvent : DomainEvent
     public string Name { get; }
     public string Description { get; }
     public double Weight { get; }
-    public double Price { get; }
+    public decimal Price { get; }
 
     public static ProductCreatedEvent For(Product product)
     {

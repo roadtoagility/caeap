@@ -6,16 +6,17 @@
 
 
 using Stock.Messaging.Kafka;
+using Stock.Querying;
 using Stock.Supporting;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
-    .AddEnvironmentVariables("ECOMMERCE_");
+    .AddEnvironmentVariables("STOCK_");
 
 builder.Services.AddSupporting();
-// builder.Services.AddQueryRepositories();
+builder.Services.AddQueryRepositories();
 //hosted services
 builder.Services.AddConsumers();
 
